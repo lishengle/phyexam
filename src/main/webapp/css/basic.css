@@ -1,0 +1,7 @@
+.msl_viewpager{position:relative;width:1000px;height:290px;background: #f7f7f7;overflow: hidden}
+.msl_viewpager .msl_viewpager_list{width:1000px;height:290px;}
+.msl_viewpager .msl_viewpager_list .msl_viewpager_item{position: absolute;left:0;top:0}
+.msl_viewpager a,.msl_viewpager img{display: block;}
+.msl_viewpager .msl_viewpager_btn{position:absolute;top:0;width:100px;height:290px;z-index:10;background: #fff;}
+.msl_viewpager .msl_viewpager_prev_btn{left:0;background:url(../images/prev.png) no-repeat center}
+.msl_viewpager .msl_viewpager_next_btn{right:0;background:url(../images/next.png) no-repeat center}

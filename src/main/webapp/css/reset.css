@@ -1,0 +1,55 @@
+/*
+ --------------------------------------------------------------------
+  site:			中国建设银行-善融商城个人商城-基础样式
+  author:		广州时代财富科技有限公司
+  updated:		2014年08月
+  updated by:   Mao
+  --------------------------------------------------------------------
+*/
+@charset "utf-8";
+/* 标签重置 */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,input,textarea,p,th,td {
+    margin:0;
+    padding:0;
+}
+body{
+    font-size:12px;
+    font-family:Arial,'宋体',Helvetica,sans-serif;
+    color:#333333;
+    background-color:#FFFFFF;}
+img {
+    border:0;}
+ol,ul {
+    list-style:none;
+}
+a{
+    outline:none;
+    color:#333333;
+    text-decoration:none;
+    cursor:pointer;
+    font-weight:normal;
+}
+a:visited{
+    color:#333333;
+    text-decoration:none
+}
+a:hover{
+    text-decoration: underline;
+    color:#fe0000;
+}
+
+a.alink{
+    color:#0b61aa;
+    margin:0 5px 0 0px;
+    display:inline-block;
+}
+
+em{
+    font-style:normal;
+}
+form{
+    margin:0px;
+}
+i{
+    font-style:normal;
+}

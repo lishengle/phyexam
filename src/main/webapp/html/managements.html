@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>身体健康管理</title>
+	<link rel="icon" href="logo16.ico" type="img/x-icon"/>
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+	<style type="text/css">
+	    body{
+	    	margin: 0;
+	    }
+		ul{
+			list-style: none;
+			padding:0;
+			margin: 0;
+			position: relative;
+		}
+		a{
+			text-decoration: none;
+			color: #000;
+			padding: 0 15px;
+		}
+		table{
+		  	border-collapse:collapse;
+		}
+		td{
+			border:1px solid #000;
+			padding:0;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+		}
+		h4{
+			font-weight: normal;
+		}
+		h4 > img{
+			position: absolute;
+			top:10px;
+			display: none;
+		}
+		h4 > img.click{
+			display: inline-block;
+		}
+		h4 > img.def{
+			display: inline-block;
+		}
+		label{
+			font-weight: bold;
+		}
+		.search{
+			color: red;
+		}
+		#ntip{
+			color: red;
+			font-size:150%;
+		}
+		#location{			
+			background: #f6f6f6;
+			padding: 5px 50px;
+		}
+		#middle{
+			margin-top: 15px;
+			position: relative;
+		}
+		#background{
+			opacity: 0.9;                    /* Firefox, Safari(WebKit), Opera */
+	   		-ms-filter: "alpha(opacity=80)"; /* IE 8 */
+	   		filter: alpha(opacity=80);       /* IE 4-7 */
+	   		zoom: 1;
+	   		height: 900px;
+	   		width: 1349px;
+		}
+		#history{
+			position: absolute;
+			display: block;
+			height: 500px;
+			overflow: auto;
+			top:30px;
+			left: 165px;
+			width: 1000px;
+			height: 850px;
+			background-color: #FFF;
+			opacity: 0.9;                    /* Firefox, Safari(WebKit), Opera */
+	   		-ms-filter: "alpha(opacity=80)"; /* IE 8 */
+	   		filter: alpha(opacity=80);       /* IE 4-7 */
+	   		zoom: 1;
+		}
+		#history > ul{
+			margin: 0 50px;
+			padding: 10px 0;
+		}
+		#history > div > p.mytip{
+			font-size:120%;
+			font-weight: bold;
+			padding-bottom: 10px;
+		}
+		#history > div{
+			padding-left: 50px;
+		}
+		#history > div > ul > li a{
+			padding-left: 0;
+		}
+		#history > div > ul > li > div{
+			margin-left: 50px;
+			display: none;
+		}
+		#history > div > ul > li > div.selected{
+			display: block;
+		}
+		#history > div > ul > li > div > p{
+			border:1px solid #939aab;
+			width: 800px;
+			padding:5px 3px;
+		}
+		#sell p{
+			text-align: center;
+			font-size: 80%;
+		}
+		#sell > p.selling{
+			margin: 10px 0 2px 0;
+			padding:10px 0;
+			height: 30px;
+			background: #bdcad0;
+			color: #000;
+			font-size:110%; 
+		}
+		.f1{
+			color: #ff6600;
+			font-weight: bold;
+		}
+		#top{
+			height: 30px;
+			line-height: 30px;
+			background: #000;
+			color: #fff;
+			position: relative;
+			padding-right: 50px;
+		}
+		#top a{
+			color: #fff;
+			padding: 0 6px;
+		}
+		#topSpan{
+			position: absolute;
+			right: 50px;
+		}
+		#tips{
+			height: 65px;
+			line-height: 65px;
+			position: relative;
+		}
+		#tips > span{
+			position: absolute;
+			left:50px;
+			font-size: 150%;
+		}
+		#tips > ul{
+			position: absolute;
+			right: 50px;
+		}
+		#tips > ul > li{
+			float: right;
+		}
+		#tips a.management{
+			color: gray;
+		}
+		.tip{
+			position: absolute;
+			right:50px;
+			font-style: 100%;
+			width: 200px;
+		}
+		#sell > ul{
+			border:none;
+			background: #f6f6f6;
+			padding:0 1px;
+		}
+		#sell a{
+			color: gray;
+		}
+		#sell > ul > li{
+			border:none;
+			float: left;
+			width: 360px;
+			height: 490px;
+			padding:0 41px;
+			text-align: center;
+			position: relative;			
+		}
+		.clearfix:after {                 
+            content: "." ;                    
+            display: block ;   
+            height: 0 ;   
+            clear: both ;   
+            visibility: hidden ;   
+         }   
+        .clearfix{ display: inline-block; }   
+              /*  Hides from IE-mac  \*/         
+        *html .clearfix{ height:1%; }   
+        .clearfix{ display:block; }   
+             /*  End hide from IE-mac   \*/  
+     
+	</style>
+</head>
+<body>
+	<div id="management">
+		<div id="top">
+		  <span id="topSpan">
+			<i class="fa fa-user-o" aria-hidden="true"></i>
+			<span>您好,</span>
+			<a>{{hist1.name}}</a>
+		  </span>
+		</div>
+		<div id="tips">
+			<span>医疗健康平台</span>
+			<ul id="tipDiv" class="clearfix">
+				<li><a class="management" href="#" target="_blank">身体健康管理</a></li>
+				<li><a class="report" href="report.html" target="_blank">体检报告</a></li>
+				<li><a class="index" href="index_user.html" target="_blank">首页</a></li>
+			</ul>
+		</div>
+		<div id="location">
+			当前位置：
+			<a href="index_user.html">首页</a>
+			>&nbsp;&nbsp;&nbsp;身体健康管理
+		</div>
+		<div id="middle">
+			<img id="background" src="img/background2.jpg">
+			<div id="history">
+				<!--<p>体检历史</p>-->
+				<p id="ntip" v-if="nexist">您现在没有体检历史！请选择需要的套餐。</p>	
+				<div v-else>
+					<p class="mytip">我的历史</p>	
+					<ul v-for="(item,index) in hist">
+						<li>
+							<h4 @click.prevent="change(index)">
+								<label>预约号:</label><a href="#">{{item.number}}</a>
+								<label>预约时间：</label><a>{{item.time}}</a>
+								<label>套餐类型:</label><a>{{item.type}}</a>
+								<img :class="{'click':cur==index}" src="img/sjt.png" width="9px" height="5px">
+							    <img :class="{'def':cur!=index}" src="img/jt.png" width="9px" height="5px">
+							</h4>
+							<div :class="{'selected':cur==index}">
+							    <label>体检结果</label>
+								<p>{{item.result}}</p>
+								<label>相关建议</label>
+								<p>{{item.advice}}</p>
+							    <a class="search" href="report.html">查看体检报告</a><br/>
+							</div>
+						</li>
+					</ul>
+			</div>
+		</div>
+		<div id="sell">
+		    <p class="selling">猜您喜欢</p>
+			<ul class="clearfix partSell">
+			<li>
+				<a href="sell_office.html" target="_blank">
+					<img src="img/office.jpg" alt="企业精选入职体检套餐【男女通用】" width="360px" height="360px">
+				</a>
+				<a href="sell_office.html" target="_blank">企业精选入职体检套餐【男女通用】</a>
+				<p>
+					商城价：<s>￥510.00元</s><br/>
+					在线价：<font class="f1">￥320.00元</font> 
+				</p>
+				<p>上月订购：2135人</p>
+			</li>
+			<li>
+				<a href="sell_father.html" target="_blank">
+					<img src="img/father.jpg" alt="父母安享健行体检套餐【男性】" width="360px" height="360px">
+				</a>
+				<a href="sell_father.html" target="_blank">父母安享健行体检套餐【男性】</a>
+				<p>
+					商城价：<s>￥2260.00元</s><br/>
+					孝心价：<font class="f1">￥998.00元</font> 
+				</p>
+				<p>上月订购：1735人</p>
+			</li>
+			<li>
+				<a href="sell_mother.html" target="_blank">
+					<img src="img/mother.jpg" alt="父母安享健行体检套餐【女性】" width="360px" height="360px">
+				</a>
+				<a href="sell_mother.html" target="_blank">父母安享健行体检套餐【女性】</a>
+				<p>
+					商城价：<s>￥2360.00元</s><br/>
+					孝心价：<font class="f1">￥1088.00元</font> 
+				</p>
+				<p>上月订购：1235人</p>
+			</li>
+			</ul>
+		</div>
+		
+	</div>
+	<script type="text/javascript" src="http://cdn.bootcss.com/vue/2.3.4/vue.min.js"></script>
+	<script type="text/javascript" src="http://cdn.bootcss.com/vue-resource/1.3.4/vue-resource.js"></script>
+	<script type="text/javascript">
+		new Vue({
+			el:'#management',
+			data:{
+				"nexist":false,
+				"rep":false,
+				"cur":1000,
+				"click":false,
+				hist:[],
+				hist1:{}
+			},
+			mounted:function(){
+				  this.$nextTick(function(){
+				    this.load();
+				  });
+				},
+				methods:{
+					load:function(){
+						var _this = this;
+						this.$http.get("/accounts").then(function(res){
+							_this.hist=res.body.listPhyexamer;
+							_this.hist1=res.body.account;
+						});
+					},
+				change :function(index){
+					this.cur = index;
+					this.click=!this.click;
+				}
+			}
+		});
+	</script>
+</body>
+</html>

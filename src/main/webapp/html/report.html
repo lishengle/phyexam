@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>体检报告</title>
+	<link rel="icon" href="logo16.ico" type="img/x-icon"/>
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+	<style type="text/css">
+	    body{
+	    	margin: 0;
+	    }
+		ul{
+			list-style: none;
+			padding:0;
+			margin: 0;
+			position: relative;
+		}
+		a{
+			text-decoration: none;
+			color: #000;
+			padding: 0 15px;
+		}
+		tbody{
+			display: block;
+			height: 600px;
+			overflow: auto;
+		}
+		td{
+			border:1px solid #000;
+			padding:0;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+		}
+		h4{
+			font-weight: normal;
+		}
+		h4 > img{
+			position: absolute;
+			top:10px;
+			display: none;
+		}
+		h4 > img.click{
+			display: inline-block;
+		}
+		h4 > img.def{
+			display: inline-block;
+		}
+		label{
+			font-weight: bold;
+		}
+		#ntip{
+			color: red;
+			font-size:150%;
+		}
+		#location{			
+			background: #f6f6f6;
+			padding: 5px 50px;
+		}
+		#middle{
+			margin-top: 15px;
+			position: relative;
+		}
+		#background{
+			opacity: 0.8;                    /* Firefox, Safari(WebKit), Opera */
+	   		-ms-filter: "alpha(opacity=80)"; /* IE 8 */
+	   		filter: alpha(opacity=80);       /* IE 4-7 */
+	   		zoom: 1;
+	   		height: 900px;
+	   		width: 1349px;
+		}
+		#report{
+			position: absolute;
+			display: block;
+			height: 500px;
+			overflow: auto;
+			top:30px;
+			left: 165px;
+			width: 1000px;
+			height: 850px;
+			background-color: #FFF;
+			opacity: 0.8;                    /* Firefox, Safari(WebKit), Opera */
+	   		-ms-filter: "alpha(opacity=80)"; /* IE 8 */
+	   		filter: alpha(opacity=80);       /* IE 4-7 */
+	   		zoom: 1;
+		}
+		#report > div{
+			padding-left: 50px;
+		}
+		#report > div > p.mytip{
+			font-size:120%;
+			font-weight: bold;
+			padding-bottom: 10px;
+		}
+		#report > div > ul > li > div{
+			border:1px solid #000;
+			width: 877px;
+			padding: 0;
+			margin:0;
+			display: none;
+		}
+		#report > div > ul > li > div > table{
+		  	border-collapse:collapse;
+		}
+		#report > div > ul > li > div.selected{
+			display: block;
+		}
+		#sell p{
+			text-align: center;
+			font-size: 80%;
+		}
+		#sell > p.selling{
+			margin: 10px 0 2px 0;
+			padding:10px 0;
+			height: 30px;
+			background: #bdcad0;
+			color: #000;
+			font-size:110%; 
+		}
+		.f1{
+			color: #ff6600;
+			font-weight: bold;
+		}
+		#top{
+			height: 30px;
+			line-height: 30px;
+			background: #000;
+			color: #fff;
+			position: relative;
+			padding-right: 50px;
+		}
+		#top a{
+			color: #fff;
+			padding: 0 6px;
+		}
+		#topSpan{
+			position: absolute;
+			right: 50px;
+		}
+		#tips{
+			height: 65px;
+			line-height: 65px;
+			position: relative;
+		}
+		#tips > span{
+			position: absolute;
+			left:50px;
+			font-size: 150%;
+		}
+		#tips > ul{
+			position: absolute;
+			right: 50px;
+		}
+		#tips > ul > li{
+			float: right;
+		}
+		#tips a.report{
+			color: gray;
+		}
+		.tip{
+			position: absolute;
+			right:50px;
+			font-style: 100%;
+			width: 200px;
+		}
+		#sell > ul{
+			border:none;
+			background: #f6f6f6;
+			padding:0 1px;
+		}
+		#sell a{
+			color: gray;
+		}
+		#sell > ul > li{
+			border:none;
+			float: left;
+			width: 360px;
+			height: 490px;
+			padding:0 41px;
+			text-align: center;
+			position: relative;			
+		}
+		.clearfix:after {                 
+            content: "." ;                    
+            display: block ;   
+            height: 0 ;   
+            clear: both ;   
+            visibility: hidden ;   
+         }   
+        .clearfix{ display: inline-block; }   
+              /*  Hides from IE-mac  \*/         
+        *html .clearfix{ height:1%; }   
+        .clearfix{ display:block; }   
+             /*  End hide from IE-mac   \*/  
+     
+	</style>
+</head>
+<body>
+
+	<div id="patientReport">
+		<div id="top">
+		  <span id="topSpan">
+			<i class="fa fa-user-o" aria-hidden="true"></i>
+			<span>您好,</span>
+			<a>{{reps1.name}}</a>
+		  </span>
+		</div>
+		<div id="tips">
+			<span>医疗健康平台</span>
+			<ul id="tipDiv" class="clearfix">
+				<li><a class="management" href="/html/managements.html" target="_blank">身体健康管理</a></li>
+				<li><a class="report" href="#" target="_blank">体检报告</a></li>
+				<li><a class="index" href="index_user.html" target="_blank">首页</a></li>
+			</ul>
+		</div>
+		<div id="location">
+			当前位置：
+			<a href="index_user.html">首页</a>
+			>&nbsp;&nbsp;&nbsp;体检报告
+		</div>
+		<div id="middle">
+			<img id="background" src="img/background2.jpg">
+			<div id="report">
+			   <!-- <p class="report">我的体检</p>-->
+				<p id="ntip" v-if="nexist">您现在没有体检历史！请选择需要的套餐。</p>	
+				<div v-else>
+					<p class="mytip">我的预约</p>		
+					<ul v-for="(item,index) in reps">
+						<li>
+							<h4 @click.prevent="change(index)">
+								<label>预约号:</label><a href="#">{{item.number}}</a>
+								<label>预约时间：</label><a>{{item.time}}</a>
+								<label>套餐类型：</label><a>{{item.type}}</a>
+								<img :class="{'click':cur==index}" src="img/sjt.png" width="9px" height="5px"/>
+							    <img :class="{'def':cur!=index}" src="img/jt.png" width="9px" height="5px"/>
+							</h4>
+							<div :class="{'selected':cur==index}">
+								<table>
+								    <tbody v-if="item.type=='office'">
+								    	<tr>
+										    <td width="180px" height="80px" rowspan="2" colspan="3" >基本信息</td>
+										    <td width="180px" colspan="3" >姓名</td>
+										    <td width="180px" colspan="3" >{{item.name}}</td>
+										    <td width="60px">性别</td>
+										    <td width="240px" colspan="4" >{{item.sex}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >年龄</td>
+										    <td width="180px" colspan="3" >{{item.age}}</td>
+										    <td width="60px">电话</td>
+										    <td width="240px" colspan="4" >{{item.tel}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" height="80px" rowspan="2" colspan="3" >一般检查</td>
+										    <td width="180px" colspan="3" >身高(cm)</td>
+										    <td width="180px" colspan="3" >{{item.height}}</td>
+										    <td width="60px">体重(kg)</td>
+										    <td width="90px" colspan="1.5" >{{item.weight}}</td>
+										    <td width="60px">血压(mmhg)</td>
+										    <td width="90px" colspan="1.5" >{{item.bp}}</td>
+										 </tr>
+										  <tr>
+										    <td width="180px" colspan="3" >体重指数</td>
+										    <td width="180px" colspan="3" >{{item.bmi}}</td>
+										    <td width="60px">脉搏</td>
+										    <td width="240px" colspan="4" >{{item.p}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" height="200px" rowspan="5" colspan="3" >五官</td>
+										    <td width="180px" colspan="3" >外眼</td>
+										    <td width="180px" colspan="3" >{{item.eyeAppearance}}</td>
+										    <td width="60px" height="80px" rowspan="2">视力</td>
+										    <td width="60px">左眼</td>
+										    <td width="180px" colspan="3" >{{item.lefteye}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >眼底</td>
+										    <td width="180px" colspan="3" >{{item.eyeGround}}</td>
+										    <td width="60px">右眼</td>
+										    <td width="180px" colspan="3" >{{item.righteye}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >外耳道</td>
+										    <td width="180px" colspan="3" >{{item.externalAcousticMeatus }}</td>
+										    <td width="60px">鼓膜</td>
+										    <td width="240px" colspan="4" >{{item.eardrum}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >鼻腔</td>
+										    <td width="180px" colspan="3" >{{item.nasalCavity}}</td>
+										    <td width="60px">鼻中隔</td>
+										    <td width="240px" colspan="4" >{{item.nasalSeptum}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >扁桃体</td>
+										    <td width="180px" colspan="3" >{{item.tonsil}}</td>
+										    <td width="60px">咽部</td>
+										    <td width="240px" colspan="4" >{{item.pharyngeal}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" height="120px" rowspan="3" colspan="3" >内科</td>
+										    <td width="180px" colspan="3" >肝脏</td>
+										    <td width="420px" colspan="7" >{{item.liver}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >肺部</td>
+										    <td width="420px" colspan="7" >{{item.bellows}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >腹部</td>
+										    <td width="420px" colspan="7" >{{item.abdomen}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" height="200px" rowspan="5" colspan="3" >外科</td>
+										    <td width="180px" colspan="3" >浅表淋巴结</td>
+										    <td width="420px" colspan="7" >{{item.superficialLymphNodes}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >甲状腺</td>
+										    <td width="420px" colspan="7" >{{item.thyroid}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >脊柱</td>
+										    <td width="420px" colspan="7" >{{item.spine}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >四肢</td>
+										    <td width="420px" colspan="7" >{{item.limb}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >皮肤</td>
+										    <td width="420px" colspan="7" >{{item.skin}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" ></td>
+										    <td width="180px" colspan="3" >项目</td>
+										    <td width="120px" colspan="2" >结果</td>
+										    <td width="180px" colspan="3" >正常值</td>
+										    <td width="180px" colspan="3" >结论</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" height="440px" rowspan="11" colspan="3" >血液检查</td>
+										    <td width="180px" colspan="3" >白细胞</td>
+										    <td width="120px" colspan="2" >{{item.whiteCorpuscles}}</td>
+										    <td width="180px" colspan="3" >4--10*10^9/L</td>
+										     <td width="180px" colspan="3" >{{wcResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >血红蛋白</td>
+										    <td width="120px" colspan="2" >{{item.hemoglobin}}</td>
+										    <td width="180px" colspan="3" >110--160g/L</td>
+										     <td width="180px" colspan="3" >{{heResult}}</td>
+										 </tr>
+										  <tr>
+										    <td width="180px" colspan="3" >血小板</td>
+										    <td width="120px" colspan="2" >{{item.platelet}}</td>
+										    <td width="180px" colspan="3" >100--300*10^9/L</td>
+										     <td width="180px" colspan="3" >{{plaResult}}</td>
+										 </tr>
+										  <tr>
+										    <td width="180px" colspan="3" >谷丙转氨酶</td>
+										    <td width="120px" colspan="2" >{{item.alt}}</td>
+										    <td width="180px" colspan="3" >0-40U/L</td>
+										     <td width="180px" colspan="3" >{{altResult}}</td>
+										 </tr>
+										  <tr>
+										    <td width="180px" colspan="3" >谷草转氨酶</td>
+										    <td width="120px" colspan="2" >{{item.ast}}</td>
+										    <td width="180px" colspan="3" >0-41U/L</td>
+										     <td width="180px" colspan="3" >{{astResult}}</td>
+										 </tr>
+										  <tr>
+										    <td width="180px" colspan="3" >总胆红素</td>
+										    <td width="120px" colspan="2" >{{item.totalBilirubin}}</td>
+										    <td width="180px" colspan="3" >5-20.1umol</td>
+										     <td width="180px" colspan="3" >{{tobResult}}</td>
+										 </tr>
+										  <tr>
+										    <td width="180px" colspan="3" >尿素氮</td>
+										    <td width="120px" colspan="2" >{{item.bun}}</td>
+										    <td width="180px" colspan="3" >1.69-8.34umol</td>
+										     <td width="180px" colspan="3" >{{bunResult}}</td>
+										 </tr>
+										  <tr>
+										    <td width="180px" colspan="3" >肌酐</td>
+										    <td width="120px" colspan="2" >{{item.cr}}</td>
+										    <td width="180px" colspan="3" >35-117mmol/L</td>
+										     <td width="180px" colspan="3" >{{crResult}}</td>
+										 </tr>
+										  <tr>
+										    <td width="180px" colspan="3" >甘油三酯</td>
+										    <td width="120px" colspan="2" >{{item.tg}}</td>
+										    <td width="180px" colspan="3" >0.42-1.71mmol/L</td>
+										     <td width="180px" colspan="3" >{{tgResult}}</td>
+										 </tr>
+										  <tr>
+										    <td width="180px" colspan="3" >总胆固醇</td>
+										    <td width="120px" colspan="2" >{{item.tc}}</td>
+										    <td width="180px" colspan="3" >2.90-5.70mmol/L</td>
+										     <td width="180px" colspan="3" >{{tcResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >血糖</td>
+										    <td width="120px" colspan="2" >{{item.bloodSugar}}</td>
+										    <td width="180px" colspan="3" >3.89-6.1mmol/L</td>
+										     <td width="180px" colspan="3" >{{blsResult}}</td>
+										 </tr>
+								    </tbody>
+							        <tbody v-else>
+								    	<tr>
+										    <td width="180px" height="80px" rowspan="2" colspan="3" >基本信息</td>
+										    <td width="180px" colspan="3" >姓名</td>
+										    <td width="180px" colspan="3" >{{item.name}}</td>
+										    <td width="60px">性别</td>
+										    <td width="240px" colspan="4" >{{item.sex}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >年龄</td>
+										    <td width="180px" colspan="3" >{{item.age}}</td>
+										    <td width="60px">电话</td>
+										    <td width="240px" colspan="4" >{{item.tel}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" height="80px" rowspan="2" colspan="3" >一般检查</td>
+										    <td width="180px" colspan="3" >身高(cm)</td>
+										    <td width="180px" colspan="3" >{{item.height}}</td>
+										    <td width="60px">体重(kg)</td>
+										    <td width="90px" colspan="1.5" >{{item.weight}}</td>
+										    <td width="60px">血压(mmhg)</td>
+										    <td width="90px" colspan="1.5" >{{item.bp}}</td>
+										 </tr>
+										  <tr>
+										    <td width="180px" colspan="3" >体重指数</td>
+										    <td width="180px" colspan="3" >{{item.bmi}}</td>
+										    <td width="60px">脉搏</td>
+										    <td width="240px" colspan="4" >{{item.p}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" height="200px" rowspan="5" colspan="3" >五官</td>
+										    <td width="180px" colspan="3" >外眼</td>
+										    <td width="180px" colspan="3" >{{item.eyeAppearance}}</td>
+										    <td width="60px" height="80px" rowspan="2">视力</td>
+										    <td width="60px">左眼</td>
+										    <td width="180px" colspan="3" >{{item.lefteye}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >眼底</td>
+										    <td width="180px" colspan="3" >{{item.eyeGround}}</td>
+										    <td width="60px">右眼</td>
+										    <td width="180px" colspan="3" >{{item.righteye}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >外耳道</td>
+										    <td width="180px" colspan="3" >{{item.externalAcousticMeatus }}</td>
+										    <td width="60px">鼓膜</td>
+										    <td width="240px" colspan="4" >{{item.eardrum}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >鼻腔</td>
+										    <td width="180px" colspan="3" >{{item.nasalCavity}}</td>
+										    <td width="60px">鼻中隔</td>
+										    <td width="240px" colspan="4" >{{item.nasalSeptum}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >扁桃体</td>
+										    <td width="180px" colspan="3" >{{item.tonsil}}</td>
+										    <td width="60px">咽部</td>
+										    <td width="240px" colspan="4" >{{item.pharyngeal}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" height="120px" rowspan="3" colspan="3" >内科</td>
+										    <td width="180px" colspan="3" >肝脏</td>
+										    <td width="420px" colspan="7" >{{item.liver}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >肺部</td>
+										    <td width="420px" colspan="7" >{{item.bellows}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >腹部</td>
+										    <td width="420px" colspan="7" >{{item.abdomen}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" height="200px" rowspan="5" colspan="3" >外科</td>
+										    <td width="180px" colspan="3" >浅表淋巴结</td>
+										    <td width="420px" colspan="7" >{{item.superficialLymphNodes}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >甲状腺</td>
+										    <td width="420px" colspan="7" >{{item.thyroid}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >脊柱</td>
+										    <td width="420px" colspan="7" >{{item.spine}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >四肢</td>
+										    <td width="420px" colspan="7" >{{item.limb}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >皮肤</td>
+										    <td width="420px" colspan="7" >{{item.skin}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" ></td>
+										    <td width="180px" colspan="3" >项目</td>
+										    <td width="120px" colspan="2" >结果</td>
+										    <td width="180px" colspan="3" >正常值</td>
+										     <td width="180px" colspan="3" >结论</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" height="280px" rowspan="7" colspan="3" >血液检查</td>
+										    <td width="180px" colspan="3" >白细胞</td>
+										    <td width="120px" colspan="2" >{{item.whiteCorpuscles}}</td>
+										    <td width="180px" colspan="3" >4--10*10^9/L</td>
+										     <td width="180px" colspan="3" >{{wcResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >血红蛋白</td>
+										    <td width="120px" colspan="2" >{{item.hemoglobin}}</td>
+										    <td width="180px" colspan="3" >110--160g/L</td>
+										     <td width="180px" colspan="3" >{{heResult}}</td>
+										 </tr>
+										  <tr>
+										    <td width="180px" colspan="3" >血小板</td>
+										    <td width="120px" colspan="2" >{{item.platelet}}</td>
+										    <td width="180px" colspan="3" >100--300*10^9/L</td>
+										     <td width="180px" colspan="3" >{{plaResult}}</td>
+										 </tr>
+										  <tr>
+										    <td width="180px" colspan="3" >谷丙转氨酶</td>
+										    <td width="120px" colspan="2" >{{item.alt}}</td>
+										    <td width="180px" colspan="3" >0-40U/L</td>
+										     <td width="180px" colspan="3" >{{altResult}}</td>
+										 </tr>
+										  <tr>
+										    <td width="180px" colspan="3" >谷草转氨酶</td>
+										    <td width="120px" colspan="2" >{{item.ast}}</td>
+										    <td width="180px" colspan="3" >0-41U/L</td>
+										     <td width="180px" colspan="3" >{{astResult}}</td>
+										 </tr>
+										  <tr>
+										    <td width="180px" colspan="3" >总胆红素</td>
+										    <td width="120px" colspan="2" >{{item.totalBilirubin}}</td>
+										    <td width="180px" colspan="3" >5-20.1umol</td>
+										     <td width="180px" colspan="3" >{{tobResult}}</td>
+										 </tr>
+										  <tr>
+										    <td width="180px" colspan="3" >尿素氮</td>
+										    <td width="120px" colspan="2" >{{item.bun}}</td>
+										    <td width="180px" colspan="3" >1.69-8.34umol</td>
+										     <td width="180px" colspan="3" >{{bunResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" height="160px" rowspan="4" colspan="3" >肝功能</td>
+										    <td width="180px" colspan="3" >丙氨酸氨基转氨酶</td>
+										     <td width="120px" colspan="2" >{{item.alt}}</td>
+										    <td width="180px" colspan="3" >0-40U/L</td>
+										     <td width="180px" colspan="3" >{{altResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >谷草转氨酶</td>
+										    <td width="120px" colspan="2" >{{item.ast}}</td>
+										    <td width="180px" colspan="3" >0-41U/L</td>
+										     <td width="180px" colspan="3" >{{astResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >谷氨酰转肽酶</td>
+										    <td width="120px" colspan="2" >{{item.ggt}}</td>
+										    <td width="180px" colspan="3" >11-50U/L</td>
+										     <td width="180px" colspan="3" >{{ggtResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >碱性磷酸酶</td>
+										    <td width="120px" colspan="2" >{{item.akp}}</td>
+										    <td width="180px" colspan="3" >40-150U/L</td>
+										     <td width="180px" colspan="3" >{{akpResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" height="160px" rowspan="4" colspan="3" >血脂</td>
+										    <td width="180px" colspan="3" >总胆固醇</td>
+										    <td width="120px" colspan="2" >{{item.tc}}</td>
+										    <td width="180px" colspan="3" >2.90-5.70mmol/L</td>
+										     <td width="180px" colspan="3" >{{tcResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >甘油三酯</td>
+										    <td width="120px" colspan="2" >{{item.tg}}</td>
+										    <td width="180px" colspan="3" >0.42-1.71mmol/L</td>
+										     <td width="180px" colspan="3" >{{tgResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >高密度脂蛋白胆固醇</td>
+										    <td width="120px" colspan="2" >{{item.hdl}}</td>
+										    <td width="180px" colspan="3" >0.8-1.9mmol/L</td>
+										     <td width="180px" colspan="3" >{{hdlResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >低密度脂蛋白胆固醇</td>
+										    <td width="120px" colspan="2" >{{item.ldl}}</td>
+										    <td width="180px" colspan="3" >1.9-3.8mmol/L</td>
+										     <td width="180px" colspan="3" >{{ldlResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >血糖</td>
+										    <td width="180px" colspan="3" >空腹血糖</td>
+										    <td width="120px" colspan="2" >{{item.bloodSugar}}</td>
+										    <td width="180px" colspan="3" >3.89-6.1mmol/L</td>
+										     <td width="180px" colspan="3" >{{blsResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" height="120px" rowspan="3" colspan="3" >肾功能</td>
+										    <td width="180px" colspan="3" >尿素氮</td>
+										    <td width="120px" colspan="2" >{{item.bun}}</td>
+										    <td width="180px" colspan="3" >1.69-8.34umol</td>
+										     <td width="180px" colspan="3" >{{bunResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >肌酐</td>
+										    <td width="120px" colspan="2" >{{item.cr}}</td>
+										    <td width="180px" colspan="3" >35-117mmol/L</td>
+										    <td width="180px" colspan="3" >{{crResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >尿酸</td>
+										    <td width="120px" colspan="2" >{{item.uricAcid}}</td>
+										    <td width="180px" colspan="3" >155-357mmol/L</td>
+										     <td width="180px" colspan="3" >{{uraResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" height="80px" rowspan="2" colspan="3" >肿瘤标志物</td>
+										    <td width="180px" colspan="3" >甲胎蛋白定量</td>
+										    <td width="120px" colspan="2" >{{item.afp}}</td>
+										    <td width="180px" colspan="3" >0-25ug/L</td>
+										     <td width="180px" colspan="3" >{{afpResult}}</td>
+										 </tr>
+										 <tr>
+										    <td width="180px" colspan="3" >癌胚抗原定量</td>
+										    <td width="120px" colspan="2" >{{item.cea}}</td>
+										    <td width="180px" colspan="3" >0-5.9ug/L</td>
+										     <td width="180px" colspan="3" >{{ceaResult}}</td>
+										 </tr>
+								    </tbody>
+								</table>
+							</div>
+						</li>					
+					</ul>
+			</div>
+		</div>
+		<div id="sell">
+		    <p class="selling">猜您喜欢</p>
+			<ul class="clearfix partSell">
+			<li>
+				<a href="sell_office.html" target="_blank">
+					<img src="img/office.jpg" alt="企业精选入职体检套餐【男女通用】" width="360px" height="360px">
+				</a>
+				<a href="sell_office.html" target="_blank">企业精选入职体检套餐【男女通用】</a>
+				<p>
+					商城价：<s>￥510.00元</s><br/>
+					在线价：<font class="f1">￥320.00元</font> 
+				</p>
+				<p>上月订购：2135人</p>
+			</li>
+			<li>
+				<a href="sell_father.html" target="_blank">
+					<img src="img/father.jpg" alt="父母安享健行体检套餐【男性】" width="360px" height="360px">
+				</a>
+				<a href="sell_father.html" target="_blank">父母安享健行体检套餐【男性】</a>
+				<p>
+					商城价：<s>￥2260.00元</s><br/>
+					孝心价：<font class="f1">￥998.00元</font> 
+				</p>
+				<p>上月订购：1735人</p>
+			</li>
+			<li>
+				<a href="sell_mother.html" target="_blank">
+					<img src="img/mother.jpg" alt="父母安享健行体检套餐【女性】" width="360px" height="360px">
+				</a>
+				<a href="sell_mother.html" target="_blank">父母安享健行体检套餐【女性】</a>
+				<p>
+					商城价：<s>￥2360.00元</s><br/>
+					孝心价：<font class="f1">￥1088.00元</font> 
+				</p>
+				<p>上月订购：1235人</p>
+			</li>
+			</ul>
+		</div>
+		
+	</div>
+	<script type="text/javascript" src="http://cdn.bootcss.com/vue/2.3.4/vue.min.js"></script>
+	<script type="text/javascript" src="http://cdn.bootcss.com/vue-resource/1.3.4/vue-resource.js"></script>
+	<script type="text/javascript">
+		
+		var userIndex = new Vue({
+			el:'#patientReport',
+			data:{
+				message:'张三',
+				cur:1000,
+				p:0,				
+				nexist:false,
+				reps:[],
+				reps1:{},
+				wcResult:"",
+				heResult:"",
+				plaResult:"",
+				altResult:"",
+				astResult:"",
+				tobResult:"",
+				bunResult:"",
+				crResult:"",
+				tgResult:"",
+				tcResult:"",
+				blsResult:"",
+				ggtResult:"",
+				akpResult:"",
+				hdlResult:"",
+				ldlResult:"",
+				uraResult:"",
+				afpResult:"",
+				ceaResult:""
+			},
+			mounted:function(){
+			  this.$nextTick(function(){
+			    this.load();
+			  });
+			},
+			methods:{
+				load:function(){
+					
+					var _this = this;
+					this.$http.get("/accounts").then(function(res){
+						_this.reps=res.body.listPhyexamer;
+						_this.reps1=res.body.account;
+					});
+				},
+				change :function(index){
+					this.cur = index;
+					this.click=!this.click;
+					if(this.reps[index].whiteCorpuscles>10){this.wcResult="白细胞过量"}
+						else if(this.reps[index].whiteCorpuscles<4){this.wcResult="白细胞不足"}
+							else{this.wcResult="正常"}
+					if(this.reps[index].hemoglobin>160){this.heResult="血红蛋白过量"}
+						else if(this.reps[index].hemoglobin<110){this.heResult="血红蛋白不足"}
+							else{this.heResult="正常"}
+					if(this.reps[index].platelet>300){this.plaResult="血小板过量"}
+						else if(this.reps[index].platelet<100){this.plaResult="血小板不足"}
+							else{this.plaResult="正常"}
+					if(this.reps[index].ALT>40){this.altResult="谷丙转氨酶过量"}
+						else if(this.reps[index].ALT<0){this.altResult="谷丙转氨酶不足"}
+							else{this.altResult="正常"}
+					if(this.reps[index].AST>41){this.astResult="谷草转氨酶过量"}
+						else if(this.reps[index].AST<0){this.astResult="谷草转氨酶不足"}
+							else{this.astResult="正常"}
+					if(this.reps[index].totalBilirubin>20.1){this.tobResult="总胆红素过量"}
+						else if(this.reps[index].totalBilirubin<5){this.tobResult="总胆红素不足"}
+							else{this.tobResult="正常"}
+				  	if(this.reps[index].BUN>8.34){this.bunResult="尿素氮过量"}
+						else if(this.reps[index].BUN<1.69){this.bunResult="尿素氮不足"}
+							else{this.bunResult="正常"}
+					if(this.reps[index].Cr>117){this.crResult="肌酐过量"}
+						else if(this.reps[index].Cr<35){this.crResult="肌酐不足"}
+							else{this.crResult="正常"}
+					if(this.reps[index].TG>1.71){this.tgResult="甘油三酯过量"}
+						else if(this.reps[index].TG<0.42){this.tgResult="甘油三酯不足"}
+							else{this.tgResult="正常"}
+				  	if(this.reps[index].TC>5.70){this.tcResult="总胆固醇过量"}
+						else if(this.reps[index].TC<2.90){this.tcResult="总胆固醇不足"}
+							else{this.tcResult="正常"}
+					if(this.reps[index].bloodSugar>6.1){this.blsResult="血糖过量"}
+						else if(this.reps[index].bloodSugar<3.89){this.blsResult="血糖不足"}
+							else{this.blsResult="正常"}
+					if(this.reps[index].GGT>50){this.ggtResult="谷氨酰转肽酶过量"}
+						else if(this.reps[index].GGT<11){this.ggtResult="谷氨酰转肽酶不足"}
+							else{this.ggtResult="正常"}
+					if(this.reps[index].AKP>150){this.akpResult="碱性磷酸酶过量"}
+						else if(this.reps[index].AKP<40){this.akpResult="碱性磷酸酶不足"}
+							else{this.akpResult="正常"}
+					if(this.reps[index].HDL>1.9){this.hdlResult="高密度脂蛋白胆固醇过量"}
+						else if(this.reps[index].HDL<0.8){this.hdlResult="高密度脂蛋白胆固醇不足"}
+							else{this.hdlResult="正常"}
+					if(this.reps[index].LDL>3.8){this.ldlResult="低密度脂蛋白胆固醇过量"}
+						else if(this.reps[index].LDL<1.9){this.ldlResult="低密度脂蛋白胆固醇不足"}
+							else{this.ldlResult="正常"}
+					if(this.reps[index].uricAcid>357){this.uraResult="尿酸过量"}
+						else if(this.reps[index].uricAcid<155){this.uraResult="尿酸不足"}
+							else{this.uraResult="正常"}
+					if(this.reps[index].AFP>25){this.afpResult="甲胎蛋白过量"}
+						else if(this.reps[index].AFP<0){this.afpResult="甲胎蛋白不足"}
+							else{this.afpResult="正常"}
+					if(this.reps[index].CEA>5.9){this.ceaResult="癌胚抗原过量"}
+						else if(this.reps[index].CEA<0){this.ceaResult="癌胚抗原不足"}
+							else{this.ceaResult="正常"}
+				}
+			}
+		});
+	</script>
+
+</body>
+</html>
